@@ -40,24 +40,31 @@ class ResultsViewController: UIViewController {
                             for movie in moviesJSON.results{
                                 self.movies.append(movie)
                             }
-                            print(self.movies.first)
-                            print(self.movies.count)
                             self.presentNextMovie()
                             }
-                        
+                        //HANDLES IF SOMETHING GOES WRONG DURING RETRIEVING MOVIES, GOES BACK TO THE MAIN MENU
                         catch let error {
                             print(error)
+                            let alertController = UIAlertController(title: "Error", message: "Something went wrong. More specifically: \(error.localizedDescription)", preferredStyle: .alert)
+                            let action1 = UIAlertAction(title: "Try again", style: .default) { (action:UIAlertAction) in
+                                self.performSegue(withIdentifier: "goToMainScreen", sender: nil)
+                            }
+                            alertController.addAction(action1)
+                            self.present(alertController, animated: true, completion: nil)
+                            
                         }
                     }
                 }.resume()
             }
         }
     }
+    // CHECK IF THE LAST MOVIE IS PRESENTED
     @IBAction func nextMovie(_ sender: Any) {
+        
         if currentMovie != movies.count - 1{
         presentNextMovie()
         }else{
-            
+            // GOES TO THE MAIN MENU
             let alertController = UIAlertController(title: "You've seen our suggestions", message: "If you want to see different movies - start again.", preferredStyle: .alert)
             
             let action1 = UIAlertAction(title: "Okay", style: .default) { (action:UIAlertAction) in
@@ -65,8 +72,6 @@ class ResultsViewController: UIViewController {
             }
             alertController.addAction(action1)
             self.present(alertController, animated: true, completion: nil)
-
-            
         }
     }
     
@@ -80,6 +85,7 @@ class ResultsViewController: UIViewController {
                        self.movieImage.downloadImage(from: url!)
                 }else
                     {
+                        // IF POSTER NOT PROVIDED USE THE DEFAULT
                     self.movieImage.image = UIImage.init(named: "iTunesArtwork")
                       print("No url to show")
                     }
@@ -87,8 +93,6 @@ class ResultsViewController: UIViewController {
             self.nameLabel.text = self.movies[self.currentMovie].originalTitle
             self.ratingLabel.text = "Popularity: \(self.movies[self.currentMovie].popularity)"
             self.movieDesciption.text = "Overview: \(self.movies[self.currentMovie].overview)"
-            
-
             self.currentMovie += 1
     }
      
@@ -96,7 +100,7 @@ class ResultsViewController: UIViewController {
             }
             
         }
-
+// DOWNLOADING IMAGE EXTENSION
 extension UIImageView {
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()

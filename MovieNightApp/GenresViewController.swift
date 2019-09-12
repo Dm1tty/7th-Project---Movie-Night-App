@@ -96,6 +96,13 @@ class GenresViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             }
                         } catch let error {
                             print(error)
+                            let alertController = UIAlertController(title: "Error", message: "Something went wrong. More specifically: \(error.localizedDescription)", preferredStyle: .alert)
+                            let action1 = UIAlertAction(title: "Try again", style: .default) { (action:UIAlertAction) in
+                                self.performSegue(withIdentifier: "goToMainScreen", sender: nil)
+                            }
+                            alertController.addAction(action1)
+                            self.present(alertController, animated: true, completion: nil)
+
                         }
 
                     }
