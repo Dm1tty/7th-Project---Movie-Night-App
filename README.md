@@ -27,6 +27,7 @@
 **Screenshots:**
 
 ![Main Screen](https://i.imgur.com/0olVLcO.png)
-![Category](https://i.imgur.com/oR2oXIC.png)
-![Result](https://i.imgur.com/5q7Rlpo.png)
+![Category](https://i.imgur.com/5q7Rlpo.png)
+![Result](https://i.imgur.com/oR2oXIC.png)
+
 
