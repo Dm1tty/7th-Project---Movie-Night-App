@@ -19,3 +19,12 @@
 **Extra Credit:**
   - To get an "exceeds" rating, you can expand on the project in the following ways:
     - Implement more than 2 selection criteria for the users to specify their preferences, and create the associated TableView and TableViewCells to support the selection.
+
+**Grade:**
+  - Exceeds Expectations
+
+**Screenshots:**
+![Main Screen](https://i.imgur.com/0olVLcO.png)
+![Category](https://i.imgur.com/oR2oXIC.png)
+![Result](https://i.imgur.com/5q7Rlpo.png)
+
